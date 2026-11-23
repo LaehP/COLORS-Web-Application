@@ -144,8 +144,6 @@ function searchColor()
 {
 	let srch = document.getElementById("searchText").value;
 	document.getElementById("colorSearchResult").innerHTML = "";
-	
-	let colorList = "";
 
 	let tmp = {search:srch,userId:userId};
 	let jsonPayload = JSON.stringify( tmp );
@@ -163,17 +161,9 @@ function searchColor()
 			{
 				document.getElementById("colorSearchResult").innerHTML = "Color(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
-				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					colorList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
-				
-				document.getElementsByTagName("p")[0].innerHTML = colorList;
+
+				document.getElementsByTagName("p")[0].innerHTML =
+					formatColorList(jsonObject.results);
 			}
 		};
 		xhr.send(jsonPayload);
@@ -183,4 +173,33 @@ function searchColor()
 		document.getElementById("colorSearchResult").innerHTML = err.message;
 	}
 	
+}
+
+function validateLoginCredentials(login, password)
+{
+	return typeof login === "string" && login.trim().length > 0 &&
+		typeof password === "string" && password.length > 0;
+}
+
+function formatColorList(results)
+{
+	if (!Array.isArray(results))
+	{
+		return "";
+	}
+
+	return results.join("<br />\r\n");
+}
+
+if (typeof module !== "undefined" && module.exports)
+{
+	module.exports = {
+		validateLoginCredentials,
+		formatColorList,
+		doLogin,
+		readCookie,
+		doLogout,
+		addColor,
+		searchColor
+	};
 }

@@ -26,6 +26,9 @@ jobs:
       - name: Lint HTML, JavaScript, and CSS
         run: npm run lint
 
+      - name: Run unit and integration tests
+        run: npm test
+
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
