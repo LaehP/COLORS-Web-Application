@@ -2,9 +2,7 @@ name: Lint
 
 on:
   push:
-    branches: [linting]
   pull_request:
-    branches: [main]
 
 permissions:
   contents: read
@@ -25,7 +23,7 @@ jobs:
       - name: Install lint tools
         run: npm ci
 
-      - name: Lint JavaScript and CSS
+      - name: Lint HTML, JavaScript, and CSS
         run: npm run lint
 
       - name: Set up PHP

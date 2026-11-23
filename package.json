@@ -7,10 +7,11 @@
     "doc": "docs"
   },
   "scripts": {
-  "lint": "npm run lint:js && npm run lint:css",
-  "lint:js": "eslint public/js/code.js",
-  "lint:css": "stylelint \"public/css/**/*.css\""
-},
+    "lint": "npm run lint:html && npm run lint:js && npm run lint:css",
+    "lint:html": "htmlhint \"public/**/*.html\"",
+    "lint:js": "eslint public/js/code.js",
+    "lint:css": "stylelint \"public/css/**/*.css\""
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/LaehP/COLORS-Web-Application.git"
@@ -27,6 +28,7 @@
     "@eslint/js": "^10.0.1",
     "eslint": "^10.15.0",
     "globals": "^17.14.0",
+    "htmlhint": "^1.9.2",
     "stylelint": "^18.0.0",
     "stylelint-config-standard": "^41.0.0"
   }
